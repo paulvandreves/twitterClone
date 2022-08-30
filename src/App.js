@@ -7,11 +7,8 @@ function App() {
   return (
     <div className="App">
        <Sidebar/>
-      <Feed/>
-     
-     <Widgets />
-      
-     
+       <Feed/>
+      <Widgets />
     </div>
   );
 }

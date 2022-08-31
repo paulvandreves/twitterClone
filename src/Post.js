@@ -1,13 +1,13 @@
 import { Avatar } from '@mui/material';
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
-import React from 'react'
+import React, { forwardRef } from 'react';
 import './Post.css';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import RepeatIcon from '@material-ui/icons/Repeat';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import PublishIcon from '@material-ui/icons/Publish';
 
-function Post({
+const Post = forwardRef(({
     displayName,
     username,
     verified,
@@ -15,40 +15,39 @@ function Post({
     text,
     image,
     avatar
-}) {
+}, ref) => {
     return (
-        <div className='post' >
+        <div className='post' ref={ref}>
             <div className="post__body" >
-            <div className="post__avatar" >
-                <Avatar src=""></Avatar>
-            </div>
+                <div className="post__avatar" >
+                    <Avatar src={avatar}></Avatar>
+                </div>
                 <div className='post__header' >
                     <div className='post__headerText' >
                         <h3>
-                            Rafeh Qazi
-                            <span>
-                                <VerifiedUserIcon className="post__badge" />
+                            {displayName}{" "}
+                            <span className="post__headerSpecial" >
+                                {verified && <VerifiedUserIcon className="post__badge" />}
+                                @{username}
                             </span>
                         </h3>
                     </div>
 
                     <div className='post__headerDescription' >
-                        <p>React Twitter clone</p>
+                        <p>{text}</p>
                     </div>
                 </div>
-                <img src="https://c.tenor.com/khJthyXJxtcAAAAS/ken-jeong-community.gif" />
+                <img src={image} />
             </div>
-           
+
             <div className="post__footer" >
                 <ChatBubbleOutlineIcon fontSize="small" />
                 <RepeatIcon fontSize="small" />
                 <FavoriteBorderIcon fontSize="small" />
                 <PublishIcon fontSize="small" />
             </div>
-
-
         </div>
-    );
+    )
 }
-
+);
 export default Post
